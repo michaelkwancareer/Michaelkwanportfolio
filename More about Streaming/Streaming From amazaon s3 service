@@ -1,0 +1,16 @@
+/**
+ * how to register "streamWrapper with s3 client: $s3Client->registerStreamWrapper()
+ */
+private function open()
+{
+    // Create a stream context to allow seeking
+    $context = stream_context_create(array(
+        's3' => array(
+            'seekable' => true
+        )
+    ));
+    if (!($this->stream = fopen($this->path, 'rb', false, $context))) {
+        die('Could not open stream for reading');
+    }
+     
+}
